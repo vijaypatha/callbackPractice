@@ -54,7 +54,7 @@ first(names, function(firstName){
 
   //Code Here for last
 var last = function(names,lastName) {
-    lastName(names[6]);
+    lastName(names[names.length - 1]);
 };
 
 last(names, function(lastName){
@@ -108,13 +108,36 @@ contains(names, 'Colt', function(result){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
-var uniq = function(names,uniqArr) {
-
-  uniqArr(names);
-};
+//var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+//
+//for (var i = 0; i < names.length; i++) {
+//    for (var j= i+1; j < names.length; j++) { //****IMP LOGIC****
+//        if(names[i] === names[j]) {
+//            //i--;
+//
+//            names.splice(j,1);
+//            j--;
+//            console.log(names);
+//        }
+//    }
+//}
 
 
     //Code Here for uniq
+//var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+function uniq(names,uniqArr) {
+    for (var i = 0; i < names.length; i++) {
+        for (var j= i+1; j < names.length; j++) {
+            if(names[i] === names[j]) {
+                //i--;
+
+                names.splice(j,1);
+                j--;
+                uniqArr(names);
+            }
+        }
+    }
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -125,7 +148,13 @@ uniq(names, function(uniqArr){
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
+var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+function each (names, resultFun) {
+    for (var i = 0; i < names.length; i++) {
+         resultFun(names[i],names.indexOf(names[i])); //indexOf****IMP*****
+    }
 
+}
 
 
 
@@ -167,6 +196,14 @@ var users = [
     address: '192 East 32 North'
   },
 ];
+
+function getUserById(userslist,idlist, cb) {
+    for (var i = 0; i < userslist.length; i++) {
+        if(userslist[i].id === idlist) {
+            cb(userslist[i]);
+        }
+    }
+}
 
 getUserById(users, '16t', function(user){
   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
